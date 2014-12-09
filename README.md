@@ -87,6 +87,7 @@ unless ($primer3->executable) {
 }
 或者，Primer3的安装路径不是在默认的/usr/bin/ primer3_core，需要进行更改：
 $primerobj = Design->new(-seq => $seq_ref, -path => /home/usrname/primer3/primer3_core);
+
 2.2	引物保守性打分
 > perl primer_score.pl <primer_CSV_file> <database_file> <output_file_name>
 <primer_CSV_file>：即primer_design.pl脚本生成的引物结果文件，以CSV格式存放；
