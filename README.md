@@ -102,4 +102,3 @@ $primerobj = Design->new(-seq => $seq_ref, -path => /home/usrname/primer3/primer
 >perl primer_specificity.pl <primer_score_CSV_file> <database_file> <output_file_name>
 < primer_score_CSV_file>: file by primer_score.pl
 <database_file>: background database for evaluating primers’ specificity
-
