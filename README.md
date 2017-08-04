@@ -7,9 +7,13 @@ primer_design
 Primer3是一个可以批量设计PCR引物、杂交探针、测序引物的工具，可本地安装或在线使用。本地安装版本支持各种操作系统如Windows、Linux、Mac等，但建议下载primer3发布版本1使用。其中Windows或Linux或Mac版本可在http://sourceforge.net/projects/primer3/files/primer3/1.1.4/ 处下载，linux下安装方法大致如下：  
 
 > unzip primer3-<release>.tar.gz
+
 > tar xvf primer3-<release>.tar
+
 > cd primer3-<release>/src
+
 > make all
+
 > make test
 
 成功安装后，应该会生成一个名为primer3_core的可执行文件，亦即Primer3的默认软件名，另外默认安装路径为/user/bin/，如果不是，可以通过相应参数对其进行修改（见下文）。其他版本安装具体可参考primer3帮助文档。  
@@ -17,16 +21,19 @@ Primer3是一个可以批量设计PCR引物、杂交探针、测序引物的工�
 在生物信息学中，BLAST（Basic Local Alignment Search Tool）它是一个用来比对生物序列的一级结构（如不同蛋白质的氨基酸序列或不同基因的DNA序列）的算法。已知一个包含若干序列的数据库，BLAST可以让研究者在其中寻找与其感兴趣的序列相同或类似的序列。BLAST可在美国国家生物技术信息中心（NCBI）官方地址ftp://ftp.ncbi.nlm.nih.gov/blast/executables/release/处选择最新的版本下载。针对不同的操作系统，用户可下载相应的软件包，如blast-2.2.26-x64-linux.tar.gz即是版本2.2.26下的64位Linux系统的BLAST软件包。Linux下BLAST的安装方式如下：  
 a)	把BLAST的压缩文件解压；  
 b)	在当前用户目录下，编辑.bashrc文件，在文件中加入包含BLAST可执行文件的路径，如：  
-export PATH=/home/username/blast/bin/:$PATH;
+> export PATH=/home/username/blast/bin/:$PATH;
 其他版本安装可参考相应的BLAST帮助文档。  
 ###	Bioperl  
 Bioperl 是 Perl 语言专门用于生物信息的工具与函数模块集，致力于集成生物信息学、基因组学和生命科学研究的开发源码。不同操作系统下的安装，可参照http://www.bioperl.org/wiki/Installing_BioPerl 中的说明。这里，简要叙述Linux下的一种安装方法：  
 a)	下载最新的bioperl版本，如BioPerl-1.6.1.tar.gz：http://bioperl.org/DIST/；  
 b)	解压：  
 > tar xvfz BioPerl-1.6.1.tar.gz
+
 > cd BioPerl-1.6.1
+
 c)	运行Build.PL安装：  
 > perl Build.PL
+
 > ./Build test
 注意，无需担心部分tests未能通过，在超过12000个tests中少数失败并不会影响Bioperl的使用。  
 >./Build install
@@ -44,7 +51,8 @@ use lib "/home/users/dag/lib/perl5/";
 
 ##	运行
 ###	设计引物  
-> perl primer_design.pl <sequence_fasta_file> <output_file_name>  
+> perl primer_design.pl <sequence_fasta_file> <output_file_name>
+
 <sequence_fasta_file>: 引物设计时所需的参照序列文件名，可包含多条序列；  
 <output_file_name>： 设计得到的引物结果文件名；  
 
@@ -89,6 +97,7 @@ unless ($primer3->executable) {
 $primerobj = Design->new(-seq => $seq_ref, -path => /home/usrname/primer3/primer3_core);
 ###	引物保守性打分
 > perl primer_score.pl <primer_CSV_file> <database_file> <output_file_name>
+
 <primer_CSV_file>：即primer_design.pl脚本生成的引物结果文件，以CSV格式存放；
 <database_file>：引物保守性打分所依赖的数据库文件。该文件可从NCBI数据库下载。
 
@@ -100,6 +109,7 @@ $primerobj = Design->new(-seq => $seq_ref, -path => /home/usrname/primer3/primer
 
 ###	Specificity
 >perl primer_specificity.pl <primer_score_CSV_file> <database_file> <output_file_name>
+
 <primer_score_CSV_file>: file by primer_score.pl
 <database_file>: background database for evaluating primers’ specificity
 
