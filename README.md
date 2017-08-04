@@ -64,36 +64,47 @@ use lib "/home/users/dag/lib/perl5/";
 
 由于设计引物时，相关的参数众多，故而用户可以基于如下的代码来查看其他参数及其含义：  
 
-> my $args = $primer3->arguments;  
+my $args = $primer3->arguments;  
 
-> print "ARGUMENT\tMEANING\n";  
+print "ARGUMENT\tMEANING\n";  
 
-> foreach my $key (keys %{$args}) {print "$key\t", $$args{$key}, "\n"}  
+foreach my $key (keys %{$args}) {print "$key\t", $$args{$key}, "\n"}  
 
 去除primer_design.pl脚本中相应代码行前的注释符号“#”即可。 
 其中，对于引物设计过程中，常见的参数，设置方式如下（同上，去除去除primer_design.pl脚本中相应代码行前的注释符号“#”即可）： 
 
 \# 设定需要设计的引物对的数目，比如50对
+
 $primerobj->add_targets(PRIMER_NUM_RETURN=>"50"); 
 
 \# 设定引物产物覆盖的区域
+
 \# If one or more targets is specified then a legal primer pair must flank at least one of them
+
 \# TRAGET: (interval list, default empty) Regions that must be included in the product. 
+
 \# The value should be a space-separated list of <start>,<length>     
+
  $primerobj->add_targets(TARGET => 500,400); 
 
 \# 设定引物的最大最小Tm
+
 $primerobj->add_targets(PRIMER_OPT_TM=>"55");
+
 $primerobj->add_targets(PRIMER_MIN_TM=>"50");
+
 $primerobj->add_targets(PRIMER_MAX_TM=>"60");
 	
 \# 设定引物产物的大小
+
 $primerobj->add_targets(PRIMER_PRODUCT_SIZE_RANGE => "100-300");
 	
 \# 设定引物序列的长短
 $primerobj->add_targets(PRIMER_OPT_SIZE=>"21");
+
 $primerobj->add_targets(PRIMER_MIN_SIZE=>"18");
- $primerobj->add_targets(PRIMER_MAX_SIZE=>"25");
+
+$primerobj->add_targets(PRIMER_MAX_SIZE=>"25");
 	
 此外，如果Primer3的软件名不是默认的primer3_core，可通过如下的方式修改：  
 $primer3->program_name('my_suprefast_primer3');
@@ -101,8 +112,10 @@ unless ($primer3->executable) {
  	print STDERR "primer3 can not be found. Is it installed?\n";
  	exit(-1)
 }
+
 或者，Primer3的安装路径不是在默认的/usr/bin/primer3_core，需要进行更改：  
 $primerobj = Design->new(-seq => $seq_ref, -path => /home/usrname/primer3/primer3_core);
+
 ###	引物保守性打分
 > perl primer_score.pl <primer_CSV_file> <database_file> <output_file_name>
 
